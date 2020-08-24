@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+    .container{
+      width:500px;
+      height:50%;
+      padding: 2%;
+      margin-top:10%;
+      margin-left: 30%;
+      background: white;
+      border-radius: 50px;
+      border-right: 10px solid ;
+      border-bottom: 15px solid;
+      border-color: grey;
+    }
+
+    .field{
+      width:350px;
+      margin-top:5px;
+      margin-bottom: 5px;
+      border:0.5px solid;
+      border-radius: 5px;
+      border-color:grey;
+      height:35px;
+
+    }
+    .form-content{
+      margin-left: 80px;
+      color:grey;
+    }
+    h1{
+      margin-left: 50px;
+    }
+    button{
+      margin: 10%;
+      margin-left: 40%;
+      background: #66ffcc;
+      border:none;
+      height:40px;
+      width:100px;
+      border-radius: 5px;
+    }
+    button:hover{
+      background:orange;
+    }
+    a{
+      text-decoration: none;
+      color:green;
+    }
+    body{
+      background: #e8e7e6;
+    }
+    </style>
+  </head>
+  <body>
+    <form method="post">
+      {% csrf_token %}
+      <div class='container'>
+        <h1> Member Log Out </h1>
+        <br>
+        <div style="padding-left:130px;">
+        <h2> Successfull </h2> <br>
+        <a href="/account/login"> Login </a>
+        again
+        </div>
+      <br>
+
+    </div>
+
+
+
+    </form>
+
+
+  </body>
+</html>

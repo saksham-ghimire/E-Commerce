@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Luumania</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+
+  <!--===============================================================================================-->
+  	<link rel="icon" type="image/png" href="{% static 'img/icons/favicon.ico' %}">
+  <!--===============================================================================================-->
+  <!--===============================================================================================-->
+  	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <!--===============================================================================================-->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+  
+  
+  <style type="text/css">
+    html,
+    body,
+    header,
+    
+ 
+
+    .carousel-inner {
+      max-height: 1600px !important;
+    }
+    .nav-button{
+      border:none;
+    }
+    
+
+    .btn-lg{
+      background: orange;
+      /* display:none; */
+    }
+    .nav-link
+{
+  font-size:15px;
+}
+
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+    #search{
+      color:white;
+      border:None;
+      background: #42f581;
+      border-radius: 15px;
+    }
+]
+    /* adds some margin below the link sets  */
+    .navbar .dropdown-menu div[class*="col"] {
+       margin-bottom:1rem;
+    }
+    
+    .acc{
+        
+        
+    }
+    .navbar .dropdown-menu {
+      border:none;
+
+    }
+    .carousel-caption{
+        color:white;
+       
+        
+    }
+
+
+    /* breakpoint and up - mega dropdown styles */
+    @media screen and (min-width: 992px) {
+
+      /* remove the padding from the navbar so the dropdown hover state is not broken */
+    .navbar {
+      padding-top:0px;
+      padding-bottom:0px;
+    
+    }
+
+    /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+     #cat .nav-item{
+      padding:.5rem .5rem;
+    }
+
+    /* makes the dropdown full width  */
+    .navbar .dropdown {position:static;}
+
+    .navbar .dropdown-menu {
+      width:100%;
+      
+    /*  height of nav-item  */
+      top:45px;
+    }
+
+      /* shows the dropdown menu on hover */
+    .navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover {
+      display:block!important;
+    }
+
+      .navbar .dropdown-menu {
+        border: 1px solid rgba(0,0,0,.15);
+        background-color: #fff;
+      }
+
+    }
+ @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+          .top-nav-collapse{background-color:#1C2331}
+@media only screen and (max-width:700px){.navbar{background-color:#1C2331}}
+
+.navbar{
+    background:#1C2331;
+}
+
+body{
+        font-family: Titillium Web;
+}
+
+
+ @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+          .top-nav-collapse{background-color:#1C2331}
+@media only screen and (max-width:700px){.navbar{background-color:#1C2331}}
+
+
+
+
+  </style>
+<script>
+    new WOW().init();
+  $("#navbarDropdown").click(function () {
+   alert($(this).text());
+});
+
+$(document).ready(function() {
+ // executes when HTML-Document is loaded and DOM is ready
+
+// breakpoint and up
+$(window).resize(function(){
+	if ($(window).width() >= 980){
+
+      // when you hover a toggle show its dropdown menu
+      $(".navbar .dropdown-toggle").hover(function () {
+         $(this).parent().toggleClass("show");
+         $(this).parent().find(".dropdown-menu").toggleClass("show");
+       });
+
+        // hide the menu when the mouse leaves the dropdown
+      $( ".navbar .dropdown-menu" ).mouseleave(function() {
+        $(this).removeClass("show");
+      });
+
+		// do something here
+	}
+});
+
+
+
+// document ready
+});
+</script>
+</head>
+
+<body>
+
+{% block content %}
+  <!--Categories section-->
+   <main>
+    <div class="container-fluid">
+    <div class="row">
+   
+
+      <div class="col-lg-12 col-sm-12 col-md-12">
+        <nav class="navbar navbar-expand-lg navbar-dark"  style="background:#1C2331; margin:10px;" id="cat">
+      <a class="navbar-brand" href="#"> Categories </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupported" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupported">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">All</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Mens
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4">
+
+                  <ul class="nav flex-column" style="padding:20px;">
+                  <h3>Clothing</h3>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.0}}" class="nav-link" style="color:black;" >Tops and Tshirt </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.1}}" class="nav-link" style="color:black;" >Hoodies and Sweatshirts</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.2}}" class="nav-link" style="color:black;" >  Jacket and Gilets </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.3}}"class="nav-link" style="color:black;">  Jeans </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.4}}"class="nav-link" style="color:black;">  Joggers </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.5}}"class="nav-link" style="color:black;">  Shorts </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.6}}"class="nav-link" style="color:black;">  Leather Wears </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.7}}"class="nav-link" style="color:black;"> BagPacks </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{list.8}}"class="nav-link" style="color:black;"> Accessories </a>
+                  </li>
+                </ul>
+                </div>
+                <span class="border-left"></span>
+                <!-- /.col-md-4  -->
+                <div class="col-md-4">
+                  <ul class="nav flex-column" style="padding:20px;">
+                    <h3>Shoes</h3>
+                  <li class="nav-item">
+                    <a href="/Men/{{lists.0}}" class="nav-link" style="color:black;">Goldstar</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{lists.1}}" class="nav-link" style="color:black;">Canvas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{lists.2}}"class="nav-link" style="color:black;">Sports</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{lists.3}}"class="nav-link" style="color:black;">Formals</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{lists.4}}"class="nav-link" style="color:black;">Football</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{lists.5}}"class="nav-link" style="color:black;">Basketball</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Men/{{lists.6}}"class="nav-link" style="color:black;">Sandals and Flipflop</a>
+                  </li>
+                </ul>
+                </div>
+                <span class="border-left"></span>
+                
+              </div>
+            </div>
+
+            <!--  /.container  -->
+
+
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Womens
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4">
+
+                  <ul class="nav flex-column"  style="padding:20px;">
+                  <h3>Clothing</h3>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.0}}"class="nav-link" style="color:black;"> Tops and Tshirts </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.1}}"class="nav-link" style="color:black;"> Hoodies and Sweatshirt </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.2}}"class="nav-link" style="color:black;">  Jacket and Gilets </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.3}}"class="nav-link" style="color:black;">  Jeans </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/women/{{list.4}}"class="nav-link" style="color:black;"> Joggers </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.9}}"class="nav-link" style="color:black;">  Kurtha </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.10}}"class="nav-link" style="color:black;">  Saree </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.6}}"class="nav-link" style="color:black;">  Leather Wears </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.11}}"class="nav-link" style="color:black;"> Skirts and pants </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.12}}"class="nav-link" style="color:black;">  Dresses </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.7}}"class="nav-link" style="color:black;"> BackPacks </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{list.8}}"class="nav-link" style="color:black;">Accessories </a>
+                  </li>
+                </ul>
+                </div>
+                <span class="border-left"></span>
+                <!-- /.col-md-4  -->
+                <div class="col-md-4">
+                  <ul class="nav flex-column" style="padding:20px;">
+                    <h3>Shoes</h3>
+                  <li class="nav-item">
+                    <a href="/Women/{{lists.7}}" class="nav-link" style="color:black;">Heels</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{lists.8}}" class="nav-link" style="color:black;">Boots</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{lists.9}}" class="nav-link" style="color:black;">Close Shoes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{lists.10}}"class="nav-link" style="color:black;">Sandals</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{lists.2}}"class="nav-link" style="color:black;"> Sports </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Women/{{lists.1}}"class="nav-link" style="color:black;"> Canvas </a>
+                  </li>
+                </ul>
+                </div>
+                <span class="border-left"></span>
+               
+              </div>
+            </div>
+
+            <!--  /.container  -->
+
+
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Kids
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4">
+                  <ul class="nav flex-column"  style="padding:20px;">
+                  <h3>Boys</h3>
+                  <li class="nav-item">
+                    <a href="/Kids/{{list.13}}" class="nav-link" style="color:black;"> Clothing </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Kids/{{lists.11}}" class="nav-link" style="color:black;"> Footwears </a>
+                  </li>
+
+                </ul>
+                </div>
+                <span class="border-left"></span>
+                <!-- /.col-md-4  -->
+                <div class="col-md-4">
+                  <ul class="nav flex-column" style="padding:20px;">
+                    <h3>Girls</h3>
+                  <li class="nav-item">
+                    <a href="/Kids/{{list.14}}" class="nav-link" style="color:black;">Clothing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/Kids/{{lists.12}}" class="nav-link" style="color:black;"> Footwears </a>
+                  </li>
+
+                </ul>
+                </div>
+                <span class="border-left"></span>
+                
+              </div>
+            </div>
+
+            <!--  /.container  -->
+
+
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline" method='GET' action="/search_s">
+        <div class="md-form my-0">
+          <input class="form-control mr-sm-2" name="search" type="text" placeholder="Search" aria-label="Search">
+
+        </div>
+      </form>
+      <form class="form-inline" method='POST' action="/delete">
+          {% csrf_token %}
+        <div class="md-form my-0">
+          <input class="form-control mr-sm-2" name="delete_id" type="number" placeholder="Delete" aria-label="Delete">
+
+        </div>
+      </form>
+      </div>
+
+
+      </nav>
+
+
+ 
+       <!--Section: Products v.3-->
+
+
+      <section class="text-center mb-4">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <!-- {{content.name}} -->
+          {% if object_list %}
+            {% for obj in object_list %}
+          <div class="col-lg-3 col-md-6 mb-4">
+
+            <!--Card-->
+
+            <div class="card">
+
+              <!--Card image-->
+              <div class="view overlay">
+                <img src="{{obj.image.url}}" class="card-img-top"
+                  alt="" style="height:325px;">
+
+                  <a href="{{obj.get_absolute_url2}}">
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+
+              </div>
+              <!--Card image-->
+
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="" class="grey-text">
+                  <!-- <h5></h5> -->
+                </a>
+                <h5>
+                  <strong>
+                    <a href="{{ obj.get_absolute_url }}" style=" font-family: Titillium Web; text-decoration:none; font-size:15px;" class="dark-grey-text">{{obj.name}}
+
+                    </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>
+                    {% if obj.dis_price %}
+                    {{obj.dis_price}}
+                    {% else %}
+                    {{obj.price}}
+                    {% endif %}
+                  </strong>
+                </h4>
+                {{obj.auto_id}}
+
+              </div>
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+
+
+          </div>
+          {% endfor %}
+          {% else %}
+          No object
+          {% endif %}
+          <!--Grid column-->
+        </div>
+
+      </section>
+
+      <!--Section: Products v.3-->
+
+      <!--Pagination-->
+      {% if is_paginated %}
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+
+          <!--Arrow left-->
+          {% if page_obj.has_previous %}
+          <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          {% endif %}
+
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+
+            </a>
+          </li>
+
+
+
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
+      <!--Pagination-->
+</div>
+    </div>
+
+</div>
+
+  </main>
+  <!--Main layout-->
+  {% endblock %}
+    <!--Footer-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn"  style="background:#1C2331;">
+
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fab fa-facebook-f mr-3"></i>
+      </a>
+
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fab fa-instagram mr-3"></i>
+      </a>
+
+
+      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+        <i class="fab fa-youtube mr-3"></i>
+      </a>
+
+    </div>
+    <!-- Social icons -->
+
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2019 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> Luumania.com </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+</body>
+
+</html>

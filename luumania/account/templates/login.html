@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login Template</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  
+  
+  <style>
+  .logo{
+    width:30%;
+    height:85px;
+  }
+  .navbar{
+      background:#1C2331;
+      
+  }
+ 
+ 
+  </style>
+</head>
+<body>
+     <!--Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar ">
+  <a class="navbar-brand"  style="margin-right:50px;" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" style="margin-right:50px;">
+        <a class="nav-link" href="/">Home
+          
+        </a>
+      </li>
+      <li class="nav-item"  style="margin-right:50px;">
+        <a class="nav-link" href="/blog">Blogs</a>
+      </li>
+      <li class="nav-item"  style="margin-right:50px;">
+        <a class="nav-link" href="/contact">Contact</a>
+      </li>
+      <li class="nav-item"  style="margin-right:50px;">
+        <a class="nav-link" href="/shop">Shop</a>
+      </li>
+      <li class="nav-item"  style="margin-right:25px;">
+        <a class="nav-link" href="/accounts/signup">SignUp</a>
+      </li>
+
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333">
+          {% if user.is_authenticated %}
+          <a class="dropdown-item" href="/accounts/logout">LogOut</a>
+          {% else %}
+          <a class="dropdown-item" href="/accounts/login">LogIn</a>
+          {% endif %}
+          
+          <a class="dropdown-item" href="/favorites">Favorites</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+{% block content %}
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container ">
+      <div class="card login-card">
+        <div class="row no-gutters ">
+          <div class="col-md-5">
+            <img src="{% static 'img/Fashion.jpg' %}" alt="login" class="login-card-img">
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <div class="brand-wrapper">
+                <img src="{% static 'img/logo2.png' %}" alt="logo" class="logo" >
+              </div>
+              <p class="login-card-description">Sign into your account</p>
+              <form method="post">
+                {% csrf_token %}
+                  <div class="form-group">
+
+                  {{form|crispy}}
+                  <div style="color:red">{{error}}</div><br>
+                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
+                </form>
+                <a href="/password_reset" class="forgot-password-link">Forgot password?</a>
+                <p class="login-card-footer-text">Don't have an account? <a href="/accounts/signup" class="text-reset">Register here</a></p>
+                <nav class="login-card-footer-nav">
+                  <a href="#!">Terms of use.</a>
+                  <a href="#!">Privacy policy</a>
+                </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </main>
+  {% endblock %}
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

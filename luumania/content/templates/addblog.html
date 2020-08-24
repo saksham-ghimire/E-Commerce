@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'welcome.html' %}
+{% load crispy_forms_tags %}
+
+
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+    .container
+    {
+      padding: 100px;
+    }
+    .input-group-text{
+      background:#80aaff;
+      border-radius: 5px;
+    }
+
+
+    </style>
+
+  </head>
+
+  <body>
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+    <div class="container">
+
+        <form action="/add_post" method = "POST" enctype='multipart/form-data'>
+          {% csrf_token %}
+        {{form.media}}
+          {{form|crispy}}
+
+
+
+        <button class="btn btn-outline-primary"  type="submit"> Add Data  </button>
+
+        </form>
+
+
+
+    </div>
+
+
+
+
+{%endblock %}
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+  </body>
+</html>

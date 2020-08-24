@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% extends 'welcome.html' %}
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+    .container
+    {
+      padding: 100px;
+    }
+    .input-group-text{
+      background:#80aaff;
+      border-radius: 5px;
+    }
+
+
+    </style>
+
+
+
+  </head>
+
+  <body>
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+
+    <div class="container">
+
+        <form action="/data" method = "POST" enctype='multipart/form-data'>
+          {% csrf_token %}
+          <div class="container">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Name</label>
+            <input type="text" name= 'name' class="form-control" id="exampleFormControlInput1" placeholder=" Eg : Cotton Shirt" /required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" id="exampleFormControlSelect1" name= "major" onchange="populate(this.id, 'exampleFormControlSelect2')" /required >
+              <option></option>
+              <option value="Mens">Mens (Shoes)</option>
+              <option value="Womens">Womens (Shoes)</option>
+              <option value="Men">Mens (Clothes)</option>
+              <option value="Women">Womens (Clothes)</option>
+              <option value="kidB">Kids (Boys)</option>
+              <option value="kidG">Kids (Girls)</option>
+
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Example select</label>
+            <select class="form-control" name="minor" id="exampleFormControlSelect2" /required>
+
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" /required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Price</label>
+            <input type="text" name= 'price' class="form-control" id="exampleFormControlInput1" placeholder="Eg : 2000 " /required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Discounted Price</label>
+            <input type="text" name= 'dis_price' class="form-control" id="exampleFormControlInput1" placeholder="Optional">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Quantity</label>
+            <input type="text" name= 'Quantity' class="form-control" id="exampleFormControlInput1" /required>
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea2">Additional Description</label>
+            <textarea class="form-control" name="add_description" id="exampleFormControlTextarea1" rows="3" placeholder="Optional"></textarea>
+          </div>
+          <label for="exampleFormControlTextarea2">Available sizes</label><br>
+          <input type="checkbox" name="size" value="S">
+          <label for="vehicle1"> S</label><br>
+          <input type="checkbox" name="size" value="M">
+          <label for="vehicle2"> M</label><br>
+          <input type="checkbox" name="size" value="L">
+          <label for="vehicle3"> L</label><br>
+          <input type="checkbox" name="size" value="XL">
+          <label for="vehicle3"> XL</label><br>
+          <input type="checkbox" name="size" value="XXL">
+          <label for="vehicle3"> XXL</label><br>
+          <br>
+
+          Image <br>
+          <br>
+          <div class="input-group">
+            <div class="input-group-prepend">
+
+              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" name='image'class="custom-file-input" id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01" accept="image/*" /required>
+              <label class="custom-file-label" for="inputGroupFile01" >Choose file</label>
+            </div>
+          </div>
+
+          <br>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            </div>
+            <div class="custom-file">
+              <input type="file" name='image1' class="custom-file-input" id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01" accept="image/*" /required>
+              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+          </div>
+<br>
+<br>
+
+
+
+
+<input type="checkbox" name="addimage" id="myCheck" value="img" onclick="myFunction()"><label for="vehicle1"> Additional Image</label><br>
+
+<br>
+<div id="text" style="display:none">
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+  </div>
+  <div class="custom-file">
+    <input type="file" name='image2' accept="image/*" class="custom-file-input" id="inputGroupFile01"
+      aria-describedby="inputGroupFileAddon01" >
+    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+  </div>
+</div>
+<br>
+<div class="input-group" id="box">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+  </div>
+  <div class="custom-file">
+    <input type="file" name='image3' accept="image/*" class="custom-file-input" id="inputGroupFile01"
+      aria-describedby="inputGroupFileAddon01">
+    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+  </div>
+</div>
+</div>
+<script>
+function myFunction() {
+  var checkBox = document.getElementById("myCheck");
+  var text = document.getElementById("text");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+
+</script>
+
+        </form>
+
+
+      <button class="btn btn-outline-primary" style="margin-top:25px;"  type="submit"> Add Data  </button>
+      
+
+    </div>
+
+
+
+
+{%endblock %}
+
+  </body>
+
+
+
+
+
+
+</html>

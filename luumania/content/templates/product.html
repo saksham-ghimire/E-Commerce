@@ -1,0 +1,604 @@
+{% load static %}
+{% load ratings %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
+
+</head>
+<style>
+
+body{
+        font-family: Titillium Web;
+}
+ #main{
+  width:100%;
+  height:350px;
+}
+.nav-item{
+  margin-left:20px;
+}
+.thumb li{
+    margin:5px;
+    
+}
+.card{
+    border:none;
+    box-shadow:none;
+}
+.card:hover{
+    box-shadow:0 0 3px 1px #e0e0e0;
+}
+.thumb li img{
+    width:100%;
+    height:10vh;
+    position:relative;
+}
+#active{
+    opacity:0.6;
+}
+.my-img{
+    width:10px;
+}
+.my-img:hover{
+  
+  background: #ff9900;
+  box-shadow: 0 0 3px 1px #ff9900;
+  
+}
+
+
+ @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+          .top-nav-collapse{background-color:#1C2331}
+         
+@media only screen and (max-width:700px){
+    .navbar{
+        background-color:#1C2331
+        
+    }
+     
+}
+.hr{
+    display:none;
+}
+@media only screen and (max-width:991px){
+    .hr{
+        display:block;
+        
+    }
+    ul#list li{
+        display:inline;
+    }
+    .my-img{
+        width:40px;
+        height:50px;
+        border-radius:50%;
+        margin:2px;
+        
+    }
+    .border-dark{
+        display:none;
+    }
+ 
+}
+
+
+.navbar{
+    background:#1C2331;
+}
+
+.name{
+    font-weight:bold;
+    
+}
+
+</style>
+<script
+        src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+                $('.thumb a').click(function(e){
+                    e.preventDefault();
+                    $('.imgbox img').attr("src", $(this).attr("href"))
+                    document.getElementById("active").removeAttribute("id");
+                    
+                    $(this).attr("id", "active");
+                    
+                    
+                   
+ 
+                  
+
+                })
+            })
+         
+         
+
+</script>
+
+
+<body>
+
+  <!--Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar ">
+  <a class="navbar-brand"  style="margin-right:50px;" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" style="margin-right:50px;">
+        <a class="nav-link" href="/">Home
+          
+        </a>
+      </li>
+      <li class="nav-item"  style="margin-right:50px;">
+        <a class="nav-link" href="/blogs">Blogs</a>
+      </li>
+      <li class="nav-item"  style="margin-right:50px;">
+        <a class="nav-link" href="/contact">Contact</a>
+      </li>
+      <li class="nav-item"  style="margin-right:25px;">
+        <a class="nav-link" href="/accounts/signup">SignUp</a>
+      </li>
+
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light">
+          <i class="fab fa-google-plus-g"></i>
+        </a>
+      </li>
+      <li class="nav-item dropdowns">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+          aria-labelledby="navbarDropdownMenuLink-333" style="width:50px; margin-right:15px; margin-top:5px;">
+          {% if user.is_authenticated %}
+          <a class="dropdown-item" href="/accounts/logout">LogOut</a>
+          {% else %}
+          <a class="dropdown-item" href="/accounts/login">LogIn</a>
+          {% endif %}
+          <a class="dropdown-item" href="/favorites">Favorites</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+  <!--Main layout-->
+ 
+
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+
+        <div class="col-md-6 mb-4">
+            <div class="row">
+            <div class="col-3 d-none d-lg-block" >
+                    
+                     <ul class="thumb list" style="list-style:none;">
+                         
+            <li> <a href="{{object.image.url}}" target="imgbox"><img src="{{object.image.url}}"  class="my-img" id="active" ></a></li>
+           
+            <li> <a href="{{object.image1.url}}" target="imgbox"><img src="{{object.image1.url}}"  class="my-img"></a></li>
+            {% if object.image2 %}
+            <li> <a href="{{object.image2.url}}" target="imgbox"><img src="{{object.image2.url}}" class="my-img"></a></li>
+            {% endif %}
+            {% if object.image3 %}
+            <li> <a href="{{object.image3.url}}" target="imgbox"><img src="{{object.image3.url}}" class="my-img"></a></li>
+            {% endif %}
+            
+                </div>
+            
+         <span class="border-left border-dark"></span>
+                <div class="col-lg-8 col-sm-12">
+            <div class="imgbox">
+          <img id="main" src="{{object.image.url}}">
+            </div>
+            
+            </div>
+            </div>
+         <div class="row hr">
+             <hr>
+            <ul id="list" class="thumb">
+                <li> <a href="{{object.image.url}}" target="imgbox"><img src="{{object.image.url}}" style="height:35px; width:35px;" class="my-img" id="active"  ></a></li>
+           
+            <li> <a href="{{object.image1.url}}" target="imgbox"><img src="{{object.image1.url}}"  style="height:35px; width:35px;" class="my-img" ></a></li>
+            {% if object.image2 %}
+            <li> <a href="{{object.image2.url}}" target="imgbox"><img src="{{object.image2.url}}" style="height:35px; width:35px;" class="my-img" ></a></li>
+            {% endif %}
+            {% if object.image3 %}
+            <li> <a href="{{object.image3.url}}" target="imgbox"><img src="{{object.image3.url}}" style="height:35px; width:35px;" class="my-img"></a></li>
+            {% endif %}
+            </ul>
+            </div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+            <p class="lead font-weight-bold">Price</p>
+            <div class="mb-3">
+
+
+                {% if object.dis_price %}
+
+                <span class="badge blue mr-1">Discount</span>
+
+                {% endif %}
+
+
+            </div>
+
+            <p class="lead">
+              <span class="mr-1">
+                {% if object.dis_price %}
+                <del>{{object.price}}</del>
+                {% endif %}
+              </span>
+              <span>
+                {% if object.dis_price %}
+                {{object.dis_price}}
+                {% else %}
+                {{object.price}}
+                {% endif %}
+              </span>
+            </p>
+            <p class="lead font-weight-bold">Address</p>
+            <p> {{object.address}} </p>
+            <p class="lead font-weight-bold">Available Sizes</p>
+            {% if object.size_s %}
+             {{object.size_s}}
+             {% endif %}
+             {% if object.size_m %}
+             {{object.size_m}}
+             {% endif %}
+             {% if object.size_l %}
+             {{object.size_l}}
+             {% endif %}
+             {% if object.size_xl %}
+             {{object.size_xl}}
+             {% endif %}
+             {% if object.size_xxl %}
+             {{object.size_xxl}}
+             {% endif %}
+             <p class="lead font-weight-bold">Available Number</p>
+             {{ object.number }}
+            <p class="lead font-weight-bold">Description</p>
+
+            <p> {{object.description}} <br><br> Additional information available on <b>{{object.phone_number}}</b></p>
+
+            {% if object.url %}
+            <a href="{{object.url}}" target="_blank"> View in Google Maps </a>
+            {% endif %}
+            {% if object.bloglink %}
+            <a href="{{object.bloglink}}" target="_blank"> View in Blogs </a>
+            {% endif %}
+
+            <br>
+            <br>
+
+            {% ratings object %}
+            {% if object.facebook %}
+            <br>
+            <br>
+             Visit Us at:
+             <br>
+
+<a class="btn-floating btn-lg btn-tw" type="button" role="button"><i class="fab fa-facebook"></i></a>
+{% if object.instagram %}
+<a class="btn-floating btn-lg btn-tw" type="button" role="button"><i class="fab fa-instagram"></i></a>
+{% endif %}
+{% endif %}
+<br>
+<br>
+{% if fav %}
+<a href= "{{object.get_rem_fav_url}}"><button type="button" class="btn btn-dark"> Remove from fav </button></a>
+{% else %}
+<a href= "{{object.get_add_fav_url}}"><button type="button" class="btn btn-dark"> Add to fav </button></a>
+{% endif %}
+
+          </div>
+
+
+
+          <!--Content-->
+
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+
+        <div class="col-md-6 text-center">
+
+          <h4 class="my-4 h4">Products You May Like</h4>
+          
+          
+          
+          
+
+          <p>
+
+
+            {% if object.add_description %}
+            {{object.add_description}}
+            {% endif %}
+            Updated On: {{object.date}}
+
+            {% if object.service %}
+            Delivery Service : Yes
+            {% else %}
+            Delivery Service : No
+              {% endif %}
+
+          </p>
+
+
+        </div>
+
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+       
+        {% if like %}
+        {% for obj in like %}
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <!--Card-->
+
+            <div class="card">
+
+              <!--Card image-->
+              <div class="view overlay">
+                <img src="{{obj.image.url}}" class="card-img-top"
+                  alt="" style="height:325px;">
+
+                  <a href="{{obj.get_absolute_url}}">
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+
+              </div>
+              <!--Card image-->
+
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="" class="grey-text">
+                  <!-- <h5></h5> -->
+                </a>
+                <h5>
+                  <strong>
+                    <a href="{{ obj.get_absolute_url }}" style=" font-family: Titillium Web; text-decoration:none; font-size:15px;" class="dark-grey-text">{{obj.name}}
+
+                    </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>
+                    {% if obj.dis_price %}
+                    {{obj.dis_price}}
+                    {% else %}
+                    {{obj.price}}
+                    {% endif %}
+                  </strong>
+                </h4>
+
+              </div>
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+
+
+        </div>
+        {% endfor %}
+        {% endif %}
+      
+        <!--Grid column-->
+
+      </div>
+      <hr>
+ <div class="row justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+
+        <div class="col-md-6 text-center">
+
+          <h4 class="my-4 h4">FeedBack</h4>
+          
+      </div>   
+      </div>
+
+<section class="mb-4">
+    <div class="row justify-content-center">
+     
+        <!--Grid column-->
+        <div class="col-md-6 mb-md-0 mb-5">
+            
+            <form id="contact-form" name="contact-form" action="{{object.get_comment_url}}"  method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                
+                
+            </form>
+
+            <div class="text-center text-md-left">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+       
+
+    </div>
+
+</section>
+<hr>
+        <div class="row justify-content-center" style="margin-bottom:50px;">
+            <h5>
+        Comments
+        </div>
+         {% for i in self_comments %}
+        <div class="row"  style="padding:15px; background:#e3e4e6; margin-bottom:2px;">
+            
+            <div class="col-lg-12">
+                
+            
+                
+                <img src="{{object.image.url}}" style="height:35px; width:35px; border-radius:50%;">
+                <span class="name" style="margin-left:15px;">{{i.Name}}</span>:
+                
+                <span style="margin-left:5px">{{i.Message}}</span>
+                
+                <a href="{{i.get_delete_url}}" style="float:right; color:red; "><i style="font-size:12px" class="fa">&#xf00d;</i></a>
+
+                
+            </div>
+        </div>
+
+        {% endfor %}
+        
+        {% for i in comments %}
+        <div class="row"  style="padding:15px; background:#e3e4e6; margin-bottom:2px;">
+            
+            <div class="col-lg-12">
+                
+            
+                
+                <img src="{{object.image.url}}" style="height:35px; width:35px; border-radius:50%;">
+                <span class="name" style="margin-left:15px;">{{i.Name}}</span>:
+                
+                
+                
+                <span style="margin-left:5px">{{i.Message}}</span>
+
+                
+            </div>
+        </div>
+
+        {% endfor %}
+       
+  </div>
+  
+  
+
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn" style="background:#6e7069;">
+
+
+
+    <hr class="my-4">
+ <!-- Social icons -->
+    <div class="pb-4">
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fab fa-facebook-f mr-3"></i>
+      </a>
+
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fab fa-instagram mr-3"></i>
+      </a>
+
+
+      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+        <i class="fab fa-youtube mr-3"></i>
+      </a>
+
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2019 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> Luumania.com </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+    if (localStorage.getItem("{{object.slug}}") === null){
+            
+         }
+         else{
+            $('#rem').show()
+            document.getElementById('fav').style.display="none";
+         }
+
+
+  </script>
+</body>
+
+</html>

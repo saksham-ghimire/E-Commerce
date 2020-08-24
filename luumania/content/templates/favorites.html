@@ -1,0 +1,109 @@
+<html>
+    <head>
+     
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css2?family=Dosis&family=Hind:wght@300&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+          <style>
+            table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  padding: 5px;
+  text-align: left;
+  
+}
+
+.favimg {
+    height: 100px;
+}
+body{
+    font-family: 'Hind', sans-serif;
+}
+.remove{
+    background:red;
+    color:white;
+}
+img{
+    height:100px;
+    width:100px;
+}
+
+        </style>
+    </head>
+    
+    <body>
+        
+       
+        <table id="myTable" class="table table-borderless table-hover " style="width:100%;">
+            <caption>Favorites</caption>
+            <tr class="table-active">
+         <th>Price</th>
+         <th>Name</th>
+         <th>Image</th>
+         <th>Url</th>
+         <th>Remove</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.item.get_absolute_url}}</td>
+            <td>{{i.price}}</td>
+            <td>
+                <img src="https://luumania.com/media/{{i.image}}">
+            </td>
+            <td><a href="{{i.item.get_rem_fav_url}}"><button>Remove</button></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+<!--    <script>-->
+<!--var tableRef = document.getElementById('myTable');-->
+<!--for (let i = 0; i < localStorage.length; i++)    {    -->
+<!--          let key = localStorage.key(i);-->
+<!--            var val = JSON.parse(localStorage.getItem(key));-->
+<!--            var price = (val['Price'])-->
+<!--            var name = (val['Name'])-->
+            
+            
+<!--            var newRow   = tableRef.insertRow();-->
+            
+            
+<!--            var newCell  = newRow.insertCell(0);-->
+<!--            var newCell2 = newRow.insertCell(1);-->
+<!--            var imgcell = newRow.insertCell(2);-->
+<!--            var urlcell = newRow.insertCell(3);-->
+<!--            var buttoncell = newRow.insertCell(4);-->
+<!--            var img = document. createElement("img");-->
+<!--            var url = document. createElement("a");-->
+<!--            var button = document.createElement("button")-->
+<!--            img. src = val['image'];-->
+<!--            img. height = "100";-->
+<!--            url. href = val['url'];-->
+<!--            button.textContent = "Remove";-->
+<!--            button.className = 'btn remove';-->
+<!--            button.addEventListener("click", function(){-->
+<!--    localStorage.removeItem(key);-->
+<!--    location.reload()-->
+<!--});-->
+           
+            
+            
+      
+<!--            var newText  = document.createTextNode(price);-->
+<!--            var newText2  = document.createTextNode(name);-->
+<!--            var url  = document.createTextNode(url);-->
+            
+<!--            newCell.appendChild(newText);-->
+<!--            newCell2.appendChild(newText2);-->
+<!--            imgcell.append(img);-->
+<!--            urlcell.appendChild(url);-->
+<!--            buttoncell.appendChild(button);-->
+            
+            
+    
+<!--}-->
+
+
+
+<!--    </script>-->
+</html>

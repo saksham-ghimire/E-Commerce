@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Creative - Start Bootstrap Theme</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <style>
+        .add{
+          background:white;
+
+        }
+        .nav-item{
+          margin-left: 20px;
+
+        }
+        
+
+        </style>
+        <script>span/*!
+    * Start Bootstrap - Creative v6.0.1 (https://startbootstrap.com/themes/creative)
+    * Copyright 2013-2020 Start Bootstrap
+    * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-creative/blob/master/LICENSE)
+    */
+    (function($) {
+  "use strict"; // Start of use strict
+
+  // Smooth scrolling using jQuery easing
+  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: (target.offset().top - 72)
+        }, 1000, "easeInOutExpo");
+        return false;
+      }
+    }
+  });
+
+  // Closes responsive menu when a scroll trigger link is clicked
+  $('.js-scroll-trigger').click(function() {
+    $('.navbar-collapse').collapse('hide');
+  });
+
+  // Activate scrollspy to add active class to navbar items on scroll
+  $('body').scrollspy({
+    target: '#mainNav',
+    offset: 75
+  });
+
+  // Collapse Navbar
+  var navbarCollapse = function() {
+    if ($("#mainNav").offset().top > 100) {
+      $("#mainNav").addClass("navbar-scrolled");
+    } else {
+      $("#mainNav").removeClass("navbar-scrolled");
+    }
+  };
+  // Collapse now if page is not at top
+  navbarCollapse();
+  // Collapse the navbar when page is scrolled
+  $(window).scroll(navbarCollapse);
+
+  // Magnific popup calls
+  $('#portfolio').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    tLoading: 'Loading image #%curr%...',
+    mainClass: 'mfp-img-mobile',
+    gallery: {
+      enabled: true,
+      navigateByImgClick: true,
+      preload: [0, 1]
+    },
+    image: {
+      tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+    }
+  });
+
+})(jQuery); // End of use strict
+
+
+// Conform Script
+
+
+
+  function populate(s1,s2){
+    var s1 = document.getElementById(s1);
+    var s2 = document.getElementById(s2);
+    s2.innerHTML = "";
+    if (s1.value == "Men"){
+      var optionArray = ["|", "Tops_Tshirt|Tops & Shirts", "Hoodies_Sweatshirt|Hoodies & Sweatshirts" , "Jacket_Gilets|Jackets & Gilets", "Jeans|Jeans", "Joggers|Joggers", "Shorts|Shorts", "Jerseys_Kits|Jerseys & Kits", "Leathers|Leather wears", "Accessories|Accessories", "BagPacks| Bagpacks"];
+    }
+    if (s1.value == "Women"){
+      var optionArray = ["|", "Tops_Tshirt|Tops & Shirts", "Hoodies_Sweatshirt|Hoodies & Sweatshirts", "Jacket_Gilets|Jackets & Gilets", "Jeans|Jeans", "Kurtha|Kurtha", "Saree|Saree", "Joggers|Joggers", "Leathers|Leather wears","Dresses|Dresses", "Shirts_Pants|Skirts and Pants","Accessories|Accessories","BagPacks| Bagpacks" ];
+    }
+    if (s1.value == "Womens"){
+      var optionArray = ["|", "Boots|Boots", "Heels|Heels", "CloseShoe|Close Shoes", "Sandals|Sandals", "Goldstar|Goldstar", "Canvas|Canvas","Sports|Sports",];
+    }
+    if (s1.value == "Mens"){
+      var optionArray = ["|", "Goldstar|Goldstar", "Canvas|Canvas", "Sports|Sports", "Formals|Formals", "Football|Football", "Basketball|Basketball", "Sandals|Sandals & Flipflops"];
+    }
+    if (s1.value == "kidB"){
+      var optionArray = ["|", "ClothingB|Clothing", "FootwearsB|Footwears"];
+    }
+    if (s1.value == "kidG"){
+      var optionArray = ["|", "ClothingG|Clothing", "FootwearsG|Footwears"];
+    }
+    for (var option in optionArray){
+
+      var pair = optionArray[option].split("|")
+      var newOption =  document.createElement("option");
+      newOption.value = pair[0];
+      newOption.innerHTML = pair[1];
+      s2.options.add(newOption)
+
+
+    }
+  }
+
+
+
+</script>
+
+<!-- JQuery -->
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.15.0/js/mdb.min.js"></script>
+    </head>
+
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light white scrolsling-navbar add">
+          <div class="container">
+
+            <!-- Brand -->
+
+              <img src="{% static 'img/Logo' %}" style="height:50px; width:100px;">
+
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+              <!-- Left -->
+              <ul class="navbar-nav mr-auto">
+
+
+              </ul>
+
+              <!-- Right -->
+              <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                  <a class="nav-link waves-effect" href="/">Home
+
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link waves-effect" href="/contact">
+                    Contact Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link waves-effect" href="/blog">
+                    Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+
+                <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-cog"> </i>
+        </a>
+        <div class="dropdown-menu" style="width:200px;" aria-labelledby="navbarDropdown">
+          <span><a class="dropdown-item" href="/account/logout" >Log Out</a></span>
+          <span><a class="dropdown-item" href="/password_change">Change Password</a></span>
+          <span><a class="dropdown-item" href="/account/update_account" >Update Profile</a></span>
+        </div>
+
+      </li>
+
+
+
+
+
+
+              </ul>
+
+            </div>
+
+          </div>
+        </nav>
+{% block content %}
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-10 align-self-end">
+                        <h1 class="text-uppercase text-white font-weight-bold">E Shop Nepal</h1>
+                        <hr class="divider my-4" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 font-weight-light mb-5">We provide platform for advertising your goods.</p>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">We've got what you need!</h2>
+                        <hr class="divider light my-4" />
+                        <p class="text-white-50 mb-4">Welcome {{user}} we believe in digitalizing every aspects.</p>
+                        <!-- {% if user1.Shopkepeer %}
+
+                        {% endif %} -->
+                        {% if shop %}
+                        <a class="btn btn-light btn-xl js-scroll-trigger" href="/data">Add Data</a>
+                        <a class="btn btn-light btn-xl js-scroll-trigger" href="/view_data">View Data</a>
+                        {% endif %}
+                        <a href='add_post' class="btn btn-light btn-xl js-scroll-trigger" > Add post </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <h2 class="text-center mt-0">At Your Service</h2>
+                <hr class="divider my-4" />
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <i class="fas fa-4x fa-gem text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Photography</h3>
+                            <p class="text-muted mb-0">We believe in saving your time and making it easier for you. You can hire out photographers for your service only at Rupee. 1000 per day.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Advertisement</h3>
+                            <p class="text-muted mb-0">We provide easy advertisement platform for you to advertise your goods.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <i class="fas fa-4x fa-globe text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Web Designing</h3>
+                            <p class="text-muted mb-0">We provide web developers for you to customize and host your private website. </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <i class="fas fa-4x fa-heart text-primary mb-4"></i>
+                            <h3 class="h4 mb-2">Made with Love</h3>
+                            <p class="text-muted mb-0">Is it really meant for you if it's not made with love?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="mt-0">Let's Get In Touch!</h2>
+                        <hr class="divider my-4" />
+                        <p class="text-muted mb-5">We believe in your gratification. For a dissatisfaction give us a call or send us an email and we will get back to you as soon as possible!</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                        <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                        <div>+1 (555) 123-4567</div>
+                    </div>
+                    <div class="col-lg-4 mr-auto text-center">
+                        <i class="fas fa-envelope fa-3x mb-3 text-muted"></i
+                        ><!-- Make sure to change the email address in BOTH the anchor text and the link target below!--><a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+        <!-- Footer-->
+        <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+          <hr class="my-4">
+
+          <!-- Social icons -->
+          <div class="pb-4">
+            <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+              <i class="fab fa-facebook-f mr-3"></i>
+            </a>
+
+
+
+            <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+              <i class="fab fa-youtube mr-3"></i>
+            </a>
+
+
+
+          
+          </div>
+          <!-- Social icons -->
+
+
+          <!--Copyright-->
+          <div class="footer-copyright py-3">
+            © 2019 Copyright:
+            <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> GSHOP.com </a>
+          </div>
+          <!--/.Copyright-->
+
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

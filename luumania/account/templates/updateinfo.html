@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block view  %}
+<!-- Material form subscription -->
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+<div class="card">
+
+    <h5 class="card-header  white-text text-center py-4" style="background:#1C2331;">
+        <strong>Update Your Profile</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body px-lg-5">
+
+        <!-- Form -->
+    
+        <form  method="POST" enctype="multipart/form-data" style="color: #757575;" >
+            <img src="{{user.image1.url}}">
+            {% csrf_token %}
+
+            {{form|crispy}}
+        <button type="submit" class="btn btn-dark" onclick="return confirm('Are you sure?')"> Update </button>
+        </form>
+        <form action="/accounts/user_delete">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"> Delete</button>
+        </form>
+
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+<!-- Material form subscription -->
+{% endblock %}

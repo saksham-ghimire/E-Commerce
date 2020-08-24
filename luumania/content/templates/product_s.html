@@ -1,0 +1,340 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+</head>
+<style>
+#main{
+  height:350px;
+  width:350px;
+
+}
+.nav-item{
+  margin-left:20px;
+}
+.orange{
+  background:orange;
+}
+
+
+
+</style>
+<script>
+
+</script>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolsling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+
+        <img src="{% static 'img/Logo' %}" style="height:50px; width:100px;">
+
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/">Home
+
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/content/contact">
+              Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/account/register" target="_blank">Sign Up</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="/account/login" target="_blank">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <!--Main layout-->
+  <script>
+  var image_tracker="f";
+  function change(){
+    var image=document.getElementById('main');
+    if (image_tracker=='f'){
+      image.src='{{object.image1.url}}';
+      image_tracker='b';
+    }else{
+      image.src='{{object.image.url}}';
+      image_tracker='f';
+    }
+
+  }
+
+  </script>
+
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+
+        <div class="col-md-6 mb-4">
+
+          <img  id="main" src="{{object.image.url}}" onclick="change()">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+            <p class="lead font-weight-bold">Price</p>
+            <div class="mb-3">
+
+
+                {% if object.dis_price %}
+
+                <span class="badge blue mr-1">Discount</span>
+
+                {% endif %}
+
+
+            </div>
+
+            <p class="lead">
+              <span class="mr-1">
+                {% if object.dis_price %}
+                <del>{{object.price}}</del>
+                {% endif %}
+              </span>
+              <span>
+                {% if object.dis_price %}
+                {{object.dis_price}}
+                {% else %}
+                {{object.price}}
+                {% endif %}
+              </span>
+            </p>
+            <p class="lead font-weight-bold">Address</p>
+            <p> {{object.address}} </p>
+            <p class="lead font-weight-bold">Available Sizes</p>
+            {% if object.size_s %}
+             {{object.size_s}}
+             {% endif %}
+             {% if object.size_m %}
+             {{object.size_m}}
+             {% endif %}
+             {% if object.size_l %}
+             {{object.size_l}}
+             {% endif %}
+             {% if object.size_xl %}
+             {{object.size_xl}}
+             {% endif %}
+             {% if object.size_xxl %}
+             {{object.size_xxl}}
+             {% endif %}
+            <p class="lead font-weight-bold">Description</p>
+
+            <p> {{object.description}} <br><br> Additional information available on <b>{{object.phone_number}}</b></p>
+
+            {% if object.url %}
+            <a href="{{object.url}}" target="_blank"> View in Google Maps </a>
+            {% endif %}
+
+
+          </div>
+
+          <!--Content-->
+          <a class="btn btn-info" style="text-style:none; color:white;" href="{{object.get_absolute_url1}}">update</a>
+
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+
+        <div class="col-md-6 text-center">
+
+          <h4 class="my-4 h4">Additional information</h4>
+
+          <p>
+
+
+            {% if object.add_description %}
+            {{object.add_description}}
+            {% endif %}
+            Updated On: {{object.date}}
+
+            {% if object.service %}
+            Delivery Service : Yes
+            {% else %}
+            Delivery Service : No
+              {% endif %}
+
+          </p>
+
+
+        </div>
+
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        {% if object.image1 %}
+
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <img src="{{object.image1.url}}" class="img-fluid" alt="">
+
+        </div>
+
+        {% endif %}
+        <!--Grid column-->
+
+        <!--Grid column-->
+        {% if object.image2 %}
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="{{object.image2l.url}}" class="img-fluid" alt="">
+
+        </div>
+        {% endif %}
+        <!--Grid column-->
+
+        <!--Grid column-->
+        {% if object.image3 %}
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="{{object.image3.url}}" class="img-fluid" alt="">
+
+        </div>
+        {% endif %}
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+
+
+    </div>
+
+
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn" style="background:#6e7069;">
+
+
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fab fa-facebook-f mr-3"></i>
+      </a>
+
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fab fa-instagram mr-3"></i>
+      </a>
+
+
+      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+        <i class="fab fa-youtube mr-3"></i>
+      </a>
+
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2019 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> Luumania.com </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+
+
+
+  </script>
+</body>
+
+</html>
